@@ -2,25 +2,68 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --gold-from: #c9a227;
+  --gold-to: #a67c00;
+  --gold-subtle: #e8d5a3;
+  --cream: #faf8f5;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-sans: var(--font-noto-sans), sans-serif;
+  --font-serif: var(--font-noto-serif), serif;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* ゴールドグラデーション（アクセント用） */
+.bg-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-from) 0%, var(--gold-to) 100%);
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, var(--gold-from), var(--gold-to));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ふわっとアニメーション用（スライドアップ＋軽いスケール、cubic-bezier で鯵仙人と違う動きに） */
+@keyframes fade-up-soft {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-fade-up-soft {
+  animation: fade-up-soft 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-fade-up-soft-delay-1 { animation-delay: 0.08s; }
+.animate-fade-up-soft-delay-2 { animation-delay: 0.16s; }
+.animate-fade-up-soft-delay-3 { animation-delay: 0.24s; }
+
+/* スクロールで表示（ふわっと＋軽いスケール。鯵仙人と差別化した動き） */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(28px) scale(0.98);
+  transition:
+    opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
