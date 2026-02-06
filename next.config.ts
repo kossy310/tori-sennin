@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
     unoptimized: true,
   },
   basePath: "/tori-sennin",
+  assetPrefix: "/tori-sennin",
 };
 
 export default nextConfig;
