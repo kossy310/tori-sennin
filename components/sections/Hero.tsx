@@ -30,7 +30,8 @@ export default function Hero() {
       <div
         className="absolute inset-0 bg-[var(--cream)] bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/hero/mv_jidori.webp')",
+          // 静的ホスティングでサブディレクトリ配下に配置しても動作するように相対パスにする
+          backgroundImage: "url('./hero/mv_jidori.webp')",
         }}
         aria-hidden
       />

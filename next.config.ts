@@ -2,16 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  // 静的ホスティング（Xサーバーなど）でサブディレクトリ配下に置いても
+  // CSS/JS が正しく読み込まれるようにするための設定
+  assetPrefix: ".",
   experimental: {
     mcpServer: true,
   },
-  // github pagesにデプロイする場合は以下の設定を追加
-  distDir: "docs", // 書き出し先を 'out' から 'docs' に変更
-  images: {
-    unoptimized: true,
-  },
-  basePath: "/tori-sennin",
-  assetPrefix: "/tori-sennin",
 };
 
 export default nextConfig;
